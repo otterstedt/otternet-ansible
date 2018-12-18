@@ -1,13 +1,16 @@
 [home-assistant]
 hass.mtl
 hass.rge
-web
+web.cloud
 
 [web]
-web
+web.cloud
+
+[orchestrator]
+ict.cloud
 
 [ict]
-ict  
+ict.cloud  
 
 [rge]
 hass.rge

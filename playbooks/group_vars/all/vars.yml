@@ -129,6 +129,7 @@ ansible:
     user:
         rge: "{{ vault.ansible.user.rge }}"
         pi: "{{ vault.ansible.user.pi }}"
+        web: "{{ vault.ansible.user.web }}"
     
 machines:
     web:

@@ -1,3 +1,9 @@
 ansible_packages:
   - name: ansible
     state: latest
+  - name: git
+    state: latest
+
+ansible_deployment_repo: https://github.com/otterstedt/otternet-ansible.git
+
+ansible_deployment_branch: master
