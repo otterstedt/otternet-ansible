@@ -24,3 +24,9 @@ ssh_hosts:
     user: "{{ ansible.user.pi }}"
     idfile: keys/id_rsa
     props: []
+  - host: web.cloud
+    hostname: 127.0.2.10
+    port: 2222
+    user: "{{ ansible.user.web }}"
+    idfile: keys/auto-front.pem
+    props: []
