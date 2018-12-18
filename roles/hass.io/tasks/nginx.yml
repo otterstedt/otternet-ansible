@@ -1,0 +1,36 @@
+- name: Create nginx file
+  become: yes
+  template:
+    src: hass.conf.j2
+    dest: /etc/nginx/conf.d/hass.{{ web.domain }}.conf
+    mode: 0644
+
+- name: Close nginx if running
+  become: yes
+  service:
+    name: nginx
+    state: stopped
+
+- name: Get certificates (port 80 must be open and unused)
+  become: yes
+  shell: docker run --rm -ti -v /etc/letsencrypt:/etc/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 certbot/certbot certonly --standalone --preferred-challenges http-01 -d {{ item }} -m {{ web.email }} --agree-tos --no-eff-email --keep-until-expiring
+  args:
+    creates: /etc/letsencrypt/live/{{ item }}/privkey.pem
+  with_items:
+    - hass.{{ web.domain }}
+
+- name: Allow httpd to connect to non standard ports
+  become: yes
+  seport:
+    ports: "{{ item.port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  with_items: "{{ hass_httpd_ports }}"
+
+- name: Start nginx
+  become: yes
+  systemd:
+    name: nginx
+    state: restarted
+    daemon_reload: yes

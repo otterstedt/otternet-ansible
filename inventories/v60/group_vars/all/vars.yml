@@ -1,0 +1,25 @@
+devices:
+  tracker:
+    networking: 
+      eth:
+        mac: B8:27:EB:76:40:F3
+        ip: 192.168.0.10
+      wifi:
+        mac: B8:27:EB:23:15:A6
+        ip: 192.168.0.11
+  trunk:
+    networking:
+      eth:
+        mac:
+        ip: 
+      wifi:
+        mac:
+        ip:
+
+hostsentries:
+  - "{{ devices.tracker.networking.eth.ip }}      v60.property.{{ web.domain }}"
+
+inventory_known_hosts: []
+
+harperdb_sync: 
+  enabled: True

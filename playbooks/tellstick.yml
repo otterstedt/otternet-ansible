@@ -1,0 +1,3 @@
+- hosts: homeautomation
+  roles:
+  - tellstick

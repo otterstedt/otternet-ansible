@@ -1,0 +1,16 @@
+- name: Checkout Home Assistant Repo
+  git:
+    repo: "{{ hass_deployment_repo }}"
+    dest: /tmp/hass-deployment
+    version: "{{ hass_deployment_branch }}"
+
+- name: Copy configuration files
+  copy:
+    src: /tmp/hass-deployment/config/{{ zone_id }}/{{ item }}
+    dest: /home/{{ ansible_user }}/homeass/config/
+    remote_src: yes
+  with_items:
+    - configuration.yaml
+    - automations.yaml
+  notify: Restart Hass
+

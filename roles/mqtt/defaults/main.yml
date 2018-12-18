@@ -1,0 +1,7 @@
+mqtt_packages:
+  - name: mosquitto
+    state: latest
+
+mqtt_services:
+  - name: mosquitto
+    state: restarted

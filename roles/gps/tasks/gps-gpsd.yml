@@ -1,0 +1,16 @@
+- name: Enable /dev/gps as gps source
+  lineinfile:
+    path: /etc/default/gpsd
+    regexp: '^DEVICES='
+    line: 'DEVICES="/dev/gps"'
+
+
+- name: Restart gpsd service services
+  service: 
+    name: "{{ item }}" 
+    state: restarted
+    enabled: yes
+  become: yes
+  with_items:
+    - gpsd.socket
+    - gpsd.service

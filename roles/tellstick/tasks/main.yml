@@ -1,0 +1,41 @@
+- name: Add telldus repo public key
+  apt_key:
+    data: "{{ lookup('file', 'telldus-public.key') }}"
+    state: present
+  become: yes
+
+- name: Add telldus repo
+  apt_repository:
+    repo: deb {{ telldus_repo_uri }}
+    state: present
+  become: yes
+
+- name: Run "apt-get update"
+  shell: apt-get update
+  become: yes
+
+- name: Install packages {{ tellstick_packages }}
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ tellstick_packages }}"
+
+- name: install pip packages
+  pip:
+    name: "{{ item }}"
+  with_items: "{{ tellstick_pip_packages }}"
+  become: yes
+
+- name: Configuration for tdtool
+  become: yes
+  template:
+    src: tellstick.conf.j2
+    dest: /etc/tellstick.conf
+    owner: root
+    group: plugdev
+    mode: 0664
+    backup: yes
+  notify: Manage services
+
+

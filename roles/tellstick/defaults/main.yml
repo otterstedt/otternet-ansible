@@ -1,0 +1,11 @@
+tellstick_services:
+  - name: telldusd
+    state: restarted
+
+tellstick_packages: 
+  - telldus-core
+  - socat
+
+tellstick_pip_packages: []
+
+telldus_repo_uri: https://s3.eu-central-1.amazonaws.com/download.telldus.com unstable main

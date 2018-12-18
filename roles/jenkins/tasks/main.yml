@@ -1,0 +1,6 @@
+- include: jenkins.yml 
+  tags: [jenkins,'jenkins:hass']
+
+- include: nginx.yml 
+  tags: [jenkins,'jenkins:nginx']
+  when: "'web' in group_names"

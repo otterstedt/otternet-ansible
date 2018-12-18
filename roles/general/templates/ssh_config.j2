@@ -1,0 +1,34 @@
+Host *-tunnels
+RemoteForward {{ general_tunnel_ip }}:2222 localhost:22
+{% for tunnel in general_ssh_tunnels %}
+{{ tunnel.type }} {{ tunnel.src }} {{ tunnel.dest }}
+{% endfor %}
+ServerAliveInterval 30
+ServerAliveCountMax 3
+ExitOnForwardFailure yes
+
+Host {{ general_cloudserver.name }} {{ general_cloudserver.name }}-tunnels
+HostName {{ general_cloudserver.host }}
+User {{ general_cloudserver.user }}
+IdentityFile {{ general_key_storage }}/{{ general_cloudserver.key }}
+
+Host localhost 127.0.0.1
+HostName 127.0.0.1
+IdentityFile {{ general_key_storage }}/id_rsa
+
+{% for ssh_host in ssh_hosts %}
+Host {{ ssh_host.host }}
+HostName {{ ssh_host.hostname }}
+Port {{ ssh_host.port }}
+User {{ ssh_host.user }}
+IdentityFile ~/.ssh/{{ ssh_host.idfile }}
+{% for prop in  ssh_host.props %}
+{{ prop }}
+{% endfor %}
+
+{% endfor %}
+
+Host github.com
+HostName github.com
+IdentityFile {{ general_key_storage }}/id_rsa
+User git

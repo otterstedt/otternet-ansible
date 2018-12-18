@@ -1,0 +1,4 @@
+- name: Add APT key
+  apt_key:
+    keyserver: "{{ mongodb_apt_keyserver }}"
+    id: "{{ mongodb_apt_key_id[mongodb_version] }}"

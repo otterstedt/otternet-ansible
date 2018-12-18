@@ -1,0 +1,13 @@
+influxdb_packages: 
+  - name: influxdb
+    state: latest
+
+influxdb_services:
+  - name: influxdb
+    state: restarted
+    
+influxdb_packages_pi:
+  - name: apt-transport-https
+    state: latest
+
+influxdb_packages_redhat: []

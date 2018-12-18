@@ -1,0 +1,20 @@
+- name: Install packages {{ packages }}
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ api_packages }}"
+
+- name: Create OtterNet API service definition
+  template:
+    src: otternet-api.service.j2
+    dest: /usr/lib/systemd/system/otternet-api.service
+  become: yes
+
+- name: Reload/Start OtterNet API service
+  systemd:
+    name: otternet-api
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  become: yes

@@ -1,0 +1,23 @@
+- name: install packages
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ hass_packages }}"
+  notify: Manage services
+
+- name: Create hass.io config folder
+  file:
+    path: /home/{{ ansible_user_id }}/homeass/config
+    state: directory
+    mode: 0755
+
+- name: Create hass.io service file
+  become: yes
+  template:
+    src: hass.io.service.j2
+    dest: /usr/lib/systemd/system/hass.service
+    mode: 0644
+  notify: Manage services
+
+

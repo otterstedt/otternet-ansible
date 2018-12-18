@@ -1,0 +1,27 @@
+- name: Install role dependant packages
+  shell: "{{ item.command }}"
+  become: yes
+  with_items: "{{ docker_commands }}"
+  tags: [docker,'docker:packages']
+
+- name: Enable and start docker service
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+    daemon_reload: yes
+  become: yes
+  tags: [docker,'docker:systemd']
+
+- name: Create docker group
+  become: yes
+  group:
+    name: docker
+    state: present
+
+- name: Add user to docker group
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes

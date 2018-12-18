@@ -1,0 +1,5 @@
+- name: Copy Influx DB repo file
+  become: yes
+  copy:
+    src: influxdb.repo
+    dest: /etc/yum.repos.d/influxdb.repo

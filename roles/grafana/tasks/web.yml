@@ -1,0 +1,27 @@
+- name: Nginx config
+  template:
+    src: nginx/grafana.conf.j2
+    dest: /etc/nginx/conf.d/grafana.{{ web.domain }}.conf
+    mode: 0764
+    backup: yes
+    force: no
+  become: yes
+  notify: Manage services
+
+- name: Set selinux permissions
+  become: yes
+  sefcontext:
+    target: "{{ snapshots_folder }}"
+    setype: "{{ item }}"
+    state: present
+  with_items:
+    - httpd_sys_content_t
+
+- name: Allow httpd to connect to non standard ports
+  become: yes
+  seport:
+    ports: "{{ item.port }}"
+    proto: tcp
+    setype: http_port_t
+    state: present
+  with_items: "{{ grafana_httpd_ports }}"

@@ -1,0 +1,20 @@
+ansible_user: "{{ ansible.user.pi }}"
+
+systemd_nogroup_name: 
+
+sh_path: /bin/sh
+
+harperdb_packages:
+  - name: python-pexpect
+    state: latest
+
+services_alias:
+    ntp: ntp
+
+atlas_pkg_name: libatlas-base-dev
+
+hass_docker: 
+  image:
+    name: homeassistant/raspberrypi3-homeassistant
+  container: 
+    name: home-assistant

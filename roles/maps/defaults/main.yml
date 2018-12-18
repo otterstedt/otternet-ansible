@@ -1,0 +1,7 @@
+mapserver_systemuser: root
+
+maps_packages: []
+
+maps_httpd_ports:
+  - name: tileserver
+    port: 8080

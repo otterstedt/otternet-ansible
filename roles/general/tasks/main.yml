@@ -1,0 +1,12 @@
+- include: misc.yml
+  tags: [general,'general:misc']
+- include: software.yml
+  tags: [general,'general:software']
+- include: ssh.yml 
+  tags: [general,'general:ssh']
+
+
+
+
+
+

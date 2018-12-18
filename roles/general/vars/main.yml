@@ -1,0 +1,34 @@
+#Values that is not supposed to be overridden
+
+general_packages: 
+  - name: ntp
+    state: latest
+  - name: vim
+    state: latest
+  - name: "{{ atlas_pkg_name }}"
+    state: latest
+  - name: nmap
+    state: latest
+
+
+
+general_pip_packages: []
+
+general_services:
+  - name: "{{ services_alias.ntp }}"
+    state: restarted
+
+general_authorized_keys:
+  - public_keys/user.id_rsa.pub
+
+general_ssh_tunnels: "{{ ssh_tunnels }}"
+
+general_tunnel_ip: "{{ tunnel_ip }}"
+
+general_keys:
+  - name: "{{ cloudserver.key }}"
+
+general_cloudserver: "{{ cloudserver }}"
+
+general_known_hosts: "['localhost', '127.0.0.1'] + {{ known_hosts }} + {{ inventory_known_hosts }} + {{ host_known_hosts }}"
+

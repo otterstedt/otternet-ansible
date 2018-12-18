@@ -1,0 +1,7 @@
+- include: otternet-api.yml 
+  tags: [otternet-api,'otternet-api:server']
+  when: "'api' in group_names"
+
+- include: nginx.yml 
+  tags: [otternet-api,'otternet-api:nginx']
+  when: "'web' in group_names"

@@ -1,0 +1,10 @@
+[Unit]
+Description=Expose Telldus sockets over TCP
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:50800,reuseaddr,fork,bind=10.0.1.29 UNIX-CONNECT:/tmp/TelldusClient
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

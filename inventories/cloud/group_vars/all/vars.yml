@@ -1,0 +1,50 @@
+harperdb_arch: Linux
+
+ansible_user: "{{ ansible.user.web }}"
+
+general_inventory_packages:
+  - name: epel-release
+    state: latest
+  - name: python-pip
+    state: latest
+  - name: http://li.nux.ro/download/nux/dextop/el7/x86_64/nux-dextop-release-0-5.el7.nux.noarch.rpm
+    state: latest
+  - name: ffmpeg
+    state: latest
+  - name: python
+    state: latest
+  - name: python34
+    state: latest
+  - name: python34-pip
+    state: latest
+  - name: sshfs
+    state: latest
+  - name: nc
+    state: latest
+
+
+general_inventory_pip_packages:
+  - name: oauth
+    pip: pip
+  - name: oauth
+    pip: pip3
+  - name: googlemaps
+    pip: pip
+  - name: googlemaps
+    pip: pip3
+
+
+
+general_inventory_symlinks:
+  - name: python 3
+    file: /usr/bin/python3.4
+    alias: /usr/bin/python3
+
+
+hostsentries: []
+
+
+
+
+
+

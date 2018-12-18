@@ -1,0 +1,10 @@
+- include: grafana-centos.yml 
+  tags: [grafana,'grafana:grafana']
+  when: system_type is defined and system_type != 'pi'
+- include: grafana-pi.yml 
+  tags: [grafana,'grafana:grafana']
+  when: system_type is defined and system_type == 'pi'
+- include: web.yml 
+  tags: [grafana,'grafana:web']
+  when: system_type is defined and system_type != 'pi'
+

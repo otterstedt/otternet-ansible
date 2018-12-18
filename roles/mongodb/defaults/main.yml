@@ -1,0 +1,6 @@
+mongodb_apt_keyserver: keyserver.ubuntu.com
+
+mongodb_version: "3.6"
+
+mongodb_apt_key_id:
+  "3.6": "2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5"

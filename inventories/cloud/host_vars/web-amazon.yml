@@ -1,0 +1,42 @@
+tunnel_ip: "{{ tunnels.cloud.web.ip }}"
+
+ssh_tunnels:
+  - type: LocalForward 
+    src: 127.0.1.10:3000 
+    dest: 127.0.1.10:3000
+  - type: LocalForward 
+    src: 127.0.1.10:8080
+    dest: 127.0.1.10:8080
+  - type: LocalForward 
+    src: 127.0.1.10:8086
+    dest: 127.0.1.10:8086
+  - type: LocalForward 
+    src: 127.0.1.10:27017
+    dest: 127.0.1.10:27017
+  - type: LocalForward 
+    src: 127.1.1.10:2222 
+    dest: 127.1.1.10:2222
+  - type: LocalForward 
+    src: 127.1.1.10:3000 
+    dest: 127.1.1.10:3000
+  - type: LocalForward 
+    src: 127.1.1.10:8086
+    dest: 127.1.1.10:8086
+  - type: RemoteForward 
+    src: 127.0.2.10:3000 
+    dest: 127.0.2.10:3000
+  - type: RemoteForward 
+    src: 127.0.2.10:8086 
+    dest: 127.0.2.10:8086
+  - type: RemoteForward 
+    src: 127.0.2.10:8123 
+    dest: localhost:8123
+  - type: RemoteForward 
+    src: 127.0.2.10:6060 
+    dest: localhost:6060
+
+
+snapshots_folder: /home/centos/snapshots
+
+daemon_ip: "{{ tunnels.cloud.web.ip }}"
+daemon_ip_sec: "{{ tunnels.cloud.web.ip2 }}"

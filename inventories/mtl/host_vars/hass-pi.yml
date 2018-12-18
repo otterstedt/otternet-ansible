@@ -1,0 +1,18 @@
+ansible_user: "{{ ansible.user.pi }}"
+tunnel_ip: "{{ tunnels.mtl.hass.ip }}"
+raspbian_version: stretch
+system_type: pi
+
+ssh_tunnels:
+  - type: RemoteForward 
+    src: 127.1.1.10:8123 
+    dest: localhost:8123
+  - type: RemoteForward 
+    src: 127.1.1.10:3000
+    dest: localhost:3000
+  - type: LocalForward 
+    src: 127.2.1.10:2222
+    dest: 127.2.1.10:2222
+  - type: LocalForward 
+    src: 127.2.3.10:2222
+    dest: 127.2.3.10:2222

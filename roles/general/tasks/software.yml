@@ -1,0 +1,24 @@
+#Installation of repos and packages
+
+- name: Install packages {{ packages }}
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ general_packages }} + {{ general_inventory_packages }}"
+  notify: Manage services
+
+- name: Create general symlinks
+  become: yes
+  file:
+    src: "{{ item.file }}"
+    dest: "{{ item.alias }}"
+    state: link
+  with_items: "{{ general_symlinks }} + {{ general_inventory_symlinks }}"
+
+- name: Install python packages
+  become: yes
+  pip:
+    name: "{{ item.name }}"
+    executable: "{{ item.pip | default('pip')}}"
+  with_items: "{{ general_pip_packages }} + {{ general_inventory_pip_packages }}"

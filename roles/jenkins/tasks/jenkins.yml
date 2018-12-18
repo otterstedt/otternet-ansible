@@ -1,0 +1,17 @@
+- name: install packages
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ jenkins_packages }}"
+  notify: Manage services
+
+- name: Create jenkins service file
+  become: yes
+  template:
+    src: jenkins.service.j2
+    dest: /usr/lib/systemd/system/jenkins.service
+    mode: 0644
+  notify: Manage services
+
+

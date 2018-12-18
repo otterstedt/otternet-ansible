@@ -1,0 +1,45 @@
+- name: Create nginx file
+  become: yes
+  template:
+    src: kartrak.conf.j2
+    dest: /etc/nginx/conf.d/kartrak.{{ web.domain }}.conf
+    mode: 0644
+
+- name: Close nginx if running
+  become: yes
+  service:
+    name: nginx
+    state: stopped
+
+- name: Get certificates (port 80 must be open and unused)
+  become: yes
+  shell: docker run --rm -ti -v /etc/letsencrypt:/etc/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 certbot/certbot certonly --standalone --preferred-challenges http-01 -d {{ item }} -m {{ web.email }} --agree-tos --no-eff-email --keep-until-expiring
+  args:
+    creates: /etc/letsencrypt/live/{{ item }}/privkey.pem
+  with_items:
+    - kartrak.{{ web.domain }}
+
+# Must run restorecon if folder exists
+- name: Set selinux folder permissions
+  become: yes
+  sefcontext:
+    target: "{{ kartrak_root }}"
+    setype: httpd_sys_content_t
+    state: present
+
+- file:
+    path: "{{ kartrak_root }}"
+    state: directory
+    mode: 0755
+
+
+## Upload app here
+    
+##
+
+- name: Start nginx
+  become: yes
+  systemd:
+    name: nginx
+    state: restarted
+    daemon_reload: yes

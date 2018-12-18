@@ -1,0 +1,16 @@
+- include: influx-pi.yml 
+  tags: [influx,'influx:influx']
+  when: system_type == 'pi'
+
+- include: influx-centos.yml 
+  tags: [influx,'influx:influx']
+  when: system_type == 'centos'
+
+- name: Install packages
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ influxdb_packages }}"
+  notify: Manage services
+  tags: [influx,'influx:influx']

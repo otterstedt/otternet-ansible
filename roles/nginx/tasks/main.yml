@@ -1,0 +1,3 @@
+- include: config.yml 
+  tags: [nginx,'nginx:config']
+  when: "'web' in group_names"

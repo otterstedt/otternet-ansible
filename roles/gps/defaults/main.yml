@@ -1,0 +1,14 @@
+# set gps device(s) in host vars
+gps:
+  devices: []
+
+gps_udev_device_aliases:
+  path: /etc/udev/rules.d/99-device-aliases.rules
+  devices: "{{ gps.devices }}"
+
+gps_packages:
+  - name: gpsd
+    state: latest
+  - name: gpsd-clients
+    state: latest
+    

@@ -1,0 +1,5 @@
+tellstick_devices: 
+    - "{{ vault_tellstick.devices.aquarium_device }}"
+    - "{{ vault_tellstick.devices.amplifier_device }}"
+    - "{{ vault_tellstick.devices.chandelier_device }}"
+    - "{{ vault_tellstick.devices.blender_device }}"

@@ -1,0 +1,41 @@
+- name: Install packages
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ mqtt_packages }}"
+  notify: Manage services
+  tags: ['mqtt','mqtt:mqtt']
+
+- name: Close nginx if running
+  become: yes
+  service:
+    name: nginx
+    state: stopped
+  notify: Start nginx
+
+- name: Get certificates (port 80 must be open and unused)
+  become: yes
+  shell: docker run --rm -ti -v /etc/letsencrypt:/etc/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 certbot/certbot certonly --standalone --preferred-challenges http-01 -d {{ item }} -m "{{ web.email }}" --agree-tos --no-eff-email --keep-until-expiring
+  args:
+    creates: /etc/letsencrypt/live/{{ item }}/privkey.pem
+  with_items:
+    - mqtt.{{ web.domain }}
+
+- name: copy config file
+  become: yes
+  template:
+    src: mosquitto.conf.j2
+    dest: /etc/mosquitto/mosquitto.conf
+  notify: Manage services
+
+- name: copy password file
+  become: yes
+  template:
+    src: mosquitto.passwd.vault
+    dest: /etc/mosquitto/passwd
+  notify: Manage services
+
+
+
+

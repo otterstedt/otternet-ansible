@@ -1,0 +1,3 @@
+ansible_packages:
+  - name: ansible
+    state: latest

@@ -1,0 +1,15 @@
+hass_packages: []
+
+hass_services:
+  - name: hass
+    state: restarted
+
+hass_docker: 
+  image:
+    name: homeassistant/home-assistant
+  container: 
+    name: home-assistant
+
+hass_httpd_ports:
+  - name: hass
+    port: 8123

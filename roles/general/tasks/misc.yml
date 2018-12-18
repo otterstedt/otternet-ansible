@@ -1,0 +1,20 @@
+#Basic setup for the role
+
+- name: set hostname to {{ hostname }}
+  hostname: 
+    name: "{{ inventory_hostname }}"
+  become: yes
+
+- name: Upload hosts file
+  template:
+    src: hosts.j2
+    dest: /etc/hosts
+    backup: yes
+  become: yes
+
+- name: Create files {{ folders }}
+  file:
+    path: "{{ item.path }}"
+    state: "{{ item.state }}"
+    mode: "{{ item.mode }}"
+  with_items: "{{ general_folders }}"

@@ -1,0 +1,67 @@
+# SSH related tasks keys/users/passwords/config etc.
+
+- name: Generate local SSH key
+  shell: ssh-keygen -b 2048 -t rsa -f {{ general_key_storage }}/id_rsa -q -N ""
+  args:
+    creates: "{{ general_key_storage }}/id_rsa"
+
+- name: Get created local public key content
+  slurp:
+    src: "{{ general_key_storage }}/id_rsa.pub"
+  register: local_authorized_key
+
+- name: Add local key to authorized keys
+  authorized_key:
+    user: "{{ ansible_user }}"
+    state: present
+    key: "{{ local_authorized_key['content'] | b64decode }}"
+
+- name: Make sure the known hosts file exists
+  copy:
+    content: ""
+    dest: ~/.ssh/known_hosts
+    force: no
+
+- name: Check host name availability (empty output if host is not added)
+  shell: "ssh-keygen -f ~/.ssh/known_hosts -F {{ item }}"
+  register: localhost_known_key
+  failed_when: localhost_known_key.rc == 1 and localhost_known_key.stderr != ""
+  with_items: "{{ general_known_hosts }}"
+  changed_when: localhost_known_key.stdout == ""
+
+- name: Add missing keys to known hosts file
+  shell: "ssh-keyscan -H -T 10 {{ item.item }} >> ~/.ssh/known_hosts"
+  when: item.stdout == ""
+  with_items: "{{ localhost_known_key.results }}"
+
+
+- name: Set up authorized keys
+  authorized_key:
+    user: "{{ ansible_user }}"
+    state: present
+    key: '{{ item }}'
+  with_file: '{{ general_authorized_keys }}'
+
+- name: Upload cloud server key file
+  copy:
+    src: private_keys/{{ item.name }}.vault
+    dest: "{{ general_key_storage }}/{{ item.name }}"
+    mode: 0700
+    backup: yes
+  with_items: "{{ general_keys }}"
+
+
+- name: Set password for {{ ansible_user }}
+  user:
+    name: "{{ ansible_user }}"
+    password: "{{ userdata[ansible_user].password.hashed }}"
+  become: yes
+
+- name: Upload ssh config file
+  template:
+    src: ssh_config.j2
+    dest: "{{ general_ssh_config.path }}"
+    mode: 0700
+    backup: yes
+
+## Add task to set: GatewayPorts clientspecified in sshd_config

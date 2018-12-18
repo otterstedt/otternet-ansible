@@ -1,0 +1,143 @@
+connectedlife:
+    devices:
+        gps:
+            dongle-001:
+                description: v60-gps
+                properties:
+                    subsystem: tty
+                    vendorId: 067b
+                    productId: 2303
+            dongle-002:
+                description: stick-gps
+                properties:
+                    subsystem: tty
+                    vendorId: xxxx
+                    productId: xxxx
+                    serial: xxxx
+        webcams:
+            logitech-001:
+                connection: USB
+                format: raw
+                type:
+                    - video
+                    - photo
+                description: v60-front
+                properties:
+                    subsystem: video4linux
+                    vendorId: 046d
+                    productId: 0826
+                    serial: 156E8EC0
+            logitech-002:
+                connection: USB
+                format: raw
+                type:
+                    - video
+                    - photo
+                description: v60-back
+                properties:
+                    subsystem: video4linux
+                    vendorId: 046d
+                    productId: 0826
+                    serial: 9B947210
+            logitech-003:
+                connection: USB
+                format: raw
+                type:
+                    - video
+                    - photo
+                description: rge-livingroom
+                properties:
+                    subsystem: video4linux
+                    vendorId: 046d
+                    productId: 0826
+                    serial: C4BD8EC0
+            internal-001:
+                connection: USB
+                format: raw
+                type:
+                    - video
+                    - photo
+                description: acer-monitor
+                properties:
+                    subsystem: video4linux
+                    vendorId: 1bcf
+                    productId: 2c17
+
+#Default way to access the machines (stc, v60, rge etc.)
+access_point: stc
+
+web:
+    domain: "{{ vault.web.domain }}"
+    email: "{{ vault.web.email }}"
+
+tunnels:
+    car:
+        tracker:
+            ip: 127.0.100.1
+        trunk:
+            ip: 127.0.100.2
+    cloud:
+        front:
+            ip: 127.0.1.10
+        web:
+            ip: 127.0.2.10
+            ip2: 127.0.2.20
+    mtl:
+        hass:
+            ip: 127.1.1.10
+    rge:
+        pi:
+            ip: 127.2.1.10
+        sat:
+            ip: 127.2.3.10
+
+maps_ip: "{{ tunnels.cloud.front.ip }}"
+
+userdata: "{{ vault_userdata }}"
+
+cloudserver:
+    name: "{{ vault.cloudserver.name }}"
+    host: "{{ vault.cloudserver.host }}"
+    user: "{{ vault.cloudserver.user }}"
+    key: "{{ vault.cloudserver.key }}"
+
+harperdb_credentials: "{{ vault.harperdb_credentials }}"
+
+known_hosts: 
+  - "{{ cloudserver.host }}"
+
+#must override for systems using other group name (Debian, Ubuntu etc.)
+systemd_nogroup_name: nobody
+
+sh_path: /usr/bin/sh
+
+services_alias:
+    ntp: ntpd
+
+lsync_local_config:
+    path: /home/{{ ansible_user }}/local/lsync
+    owner: "{{ ansible_user }}"
+    mode: "0700"
+
+
+
+system_type: centos
+
+ansible:
+    vault:
+        password: "{{ vault.ansible.vault.password }}"
+    user:
+        rge: "{{ vault.ansible.user.rge }}"
+        pi: "{{ vault.ansible.user.pi }}"
+    
+machines:
+    web:
+        lan: 
+            ip: "{{ vault.machines.web.lan.ip }}"
+    ict:
+        lan:
+            ip: "{{ vault.machines.ict.lan.ip }}"
+
+
+
+

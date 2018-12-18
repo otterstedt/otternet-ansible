@@ -1,0 +1,21 @@
+- name: Install role dependant packages
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  become: yes
+  with_items: "{{ gps_packages }}"
+  tags: [gps,'gps:packages']
+  
+- include: gps-udev.yml 
+  tags: [gps,'gps:udev']
+
+- include: gps-gpsd.yml 
+  tags: [gps,'gps:gpsd']
+
+ 
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+- include: mapserver.yml 
+  tags: [maps,'maps:server']
+  when: "'map' in group_names"
+
+- include: nginx.yml 
+  tags: [maps,'maps:nginx']
+  when: "'web' in group_names"

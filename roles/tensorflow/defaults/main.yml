@@ -1,0 +1,9 @@
+tensorflow_pip_packages:
+  - name: opencv-python
+    pip: pip
+  - name: opencv-python
+    pip: pip3
+  - name: tensorflow
+    pip: pip
+  - name: tensorflow
+    pip: pip3

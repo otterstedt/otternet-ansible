@@ -1,0 +1,9 @@
+[all:vars]
+access_point=v60
+
+[trackers]
+v60
+
+[pi]
+v60    
+

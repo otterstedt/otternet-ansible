@@ -1,0 +1,23 @@
+[Unit]
+Description=Tileserver GL Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+#ExecStartPre=/bin/sleep 1
+ExecStartPre=/usr/bin/docker pull klokantech/tileserver-gl
+ExecStart=/usr/bin/docker run --rm --name=systemdtileservergl -v=/mnt/ict-storage/maps/osm/:/data -p={{ daemon_ip }}:8080:80 klokantech/tileserver-gl
+ExecStop=/bin/docker stop systemdtileservergl
+ExecStopPost=/bin/docker rm -f systemdtileservergl
+ExecReload=/bin/docker restart systemdtileservergl
+User={{ mapserver_systemuser }}
+# Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
+Group={{ systemd_nogroup_name }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+WorkingDirectory=/mnt/ict-storage/maps/osm/
+
+[Install]
+Alias=tileserver-gl.service
+WantedBy=multi-user.target
+
+

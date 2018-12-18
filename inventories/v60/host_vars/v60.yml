@@ -1,0 +1,21 @@
+access_hosts:
+  stc: 10.0.1.28
+  v60: 192.168.0.10
+  rge: 192.168.1.123
+
+ansible_ssh_host: "{{ access_hosts[access_point] }}"
+
+tunnel_ip: "{{ tunnels.car.tracker.ip }}"
+
+ssh_tunnels:
+  - type: RemoteForward 
+    src: 127.0.100.1:8000 
+    dest: localhost:8000  
+  - type: LocalForward 
+    src: 127.0.100.1:8009 
+    dest: localhost:8009
+
+gps:
+  devices:
+    - device: "{{ connectedlife.devices.gps['dongle-001'] }}"
+      alias: gps

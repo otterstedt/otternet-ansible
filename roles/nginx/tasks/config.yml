@@ -1,0 +1,22 @@
+#set selinux for cache
+#semanage fcontext -a -t httpd_cache_t "/webapps/cache(/.*)?"
+
+- name: Set selinux cache permissions
+  become: yes
+  sefcontext:
+    target: "{{ item }}"
+    setype: httpd_cache_t
+    state: present
+  with_items:
+    - "/mnt/web-storage/cache(/.*)?"
+
+- name: Create nginx cache folders
+  become: yes
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+    - /mnt/web-storage/cache/nginx/long
+    - /mnt/web-storage/cache/nginx/short
+    - /mnt/web-storage/cache/nginx/month

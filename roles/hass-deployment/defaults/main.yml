@@ -1,0 +1,7 @@
+hass_deployment_packages:
+  - name: git
+    state: latest
+
+hass_deployment_repo: https://github.com/otterstedt/home-assistant.git
+
+hass_deployment_branch: master

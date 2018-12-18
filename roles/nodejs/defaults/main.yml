@@ -1,0 +1,5 @@
+nodejs:
+  repo:
+    debian: https://deb.nodesource.com/setup_10.x
+    redhat: https://rpm.nodesource.com/setup_10.x
+  version: 10.2.1

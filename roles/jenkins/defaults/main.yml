@@ -1,0 +1,17 @@
+jenkins_packages: []
+
+jenkins_services:
+  - name: jenkins
+    state: restarted
+
+jenkins_docker: 
+  image:
+    name: jenkins/jenkins:lts
+  container: 
+    name: jenkins
+
+jenkins_httpd_ports:
+  - name: jenkins
+    port: 8080
+  - name: jenkins
+    port: 50000

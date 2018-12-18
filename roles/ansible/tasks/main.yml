@@ -1,0 +1,5 @@
+- include: software.yml 
+  tags: ['ansible','ansible:software']
+
+- include: configuration.yml 
+  tags: ['ansible','ansible:configuration']

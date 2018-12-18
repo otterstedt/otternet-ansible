@@ -1,0 +1,31 @@
+- name: Install packages {{ packages }}
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ fileexposure_packages }}"
+
+- name: htpasswd
+  become: yes
+  template:
+    src: nginx/htpasswd-files.vault
+    dest: /etc/nginx/.htpasswd-files.{{ web.domain }}
+    mode: 0644
+
+- name: Nginx config
+  template:
+    src: nginx/files.conf.j2
+    dest: /etc/nginx/conf.d/files.{{ web.domain }}.conf
+    mode: 0764
+    backup: yes
+  become: yes
+  notify: Manage services
+
+- name: Set selinux permissions
+  become: yes
+  sefcontext:
+    target: /mnt/ict-storage/snapshots
+    setype: "{{ item }}"
+    state: present
+  with_items:
+    - httpd_sys_content_t

@@ -1,0 +1,5 @@
+- include: software.yml 
+  tags: ['hass-deployment','hass-deployment:software']
+
+- include: deploy.yml 
+  tags: ['hass-deployment','hass-deployment:deploy']

@@ -1,0 +1,39 @@
+server {
+       listen 443 ssl;
+
+       server_name hass.{{ web.domain }};
+
+       root /usr/share/nginx/html;
+       index index.html;
+
+        ssl_certificate      /etc/letsencrypt/live/hass.{{ web.domain }}/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/hass.{{ web.domain }}/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+
+        location / {
+            proxy_pass http://{{ daemon_ip }}:8123;
+
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+        }
+
+        location /api/websocket {
+            proxy_pass http://{{ daemon_ip }}:8123/api/websocket;
+            proxy_set_header Host $host;
+
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+
+        }
+
+
+
+}

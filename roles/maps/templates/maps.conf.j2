@@ -1,0 +1,40 @@
+server {
+       listen 443 ssl;
+
+       server_name maps.{{ web.domain }};
+
+       root /usr/share/nginx/html;
+       index index.html;
+
+        ssl_certificate      /etc/letsencrypt/live/maps.{{ web.domain }}/fullchain.pem;
+        ssl_certificate_key  /etc/letsencrypt/live/maps.{{ web.domain }}/privkey.pem;
+
+        ssl_session_cache    shared:SSL:1m;
+        ssl_session_timeout  5m;
+
+        ssl_ciphers  HIGH:!aNULL:!MD5;
+        ssl_prefer_server_ciphers  on;
+
+        access_log  /var/log/nginx/maps.cache.log rt_cache;
+
+        location / {
+            proxy_pass http://{{ daemon_ip }}:8080;
+
+            proxy_cache month_cache;
+
+            proxy_cache_lock on;
+
+            proxy_ignore_headers Cache-Control;
+            proxy_cache_valid 30d;
+            proxy_cache_bypass $cookie_nocache $arg_nocache;
+
+            proxy_set_header Host $http_host;
+            proxy_connect_timeout 10;
+            proxy_read_timeout 10;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+
+
+
+}

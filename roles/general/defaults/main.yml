@@ -1,0 +1,36 @@
+# Default values if not specified anywhere else
+
+inventory_packages: []
+
+general_inventory_packages: []
+general_inventory_pip_packages: []
+
+general_symlinks: []
+general_inventory_symlinks: []
+
+general_ssh_config:
+  path: ~/.ssh/config
+
+general_key_storage: ~/.ssh/keys
+
+general_keys:
+  - name: auto-front.pem
+
+general_folders: 
+  - path: "{{ general_key_storage }}"
+    state: directory
+    mode: "0700"
+
+hostsentries: [] 
+
+general_ssh_tunnels: []
+
+inventory_known_hosts: []
+
+host_known_hosts: []
+
+ssh_tunnels: []
+
+atlas_pkg_name: libatlas-base-dev
+
+ssh_hosts: []

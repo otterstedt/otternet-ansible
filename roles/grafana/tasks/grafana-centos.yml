@@ -1,0 +1,35 @@
+- name: Upload grafana repo file
+  become: yes
+  copy:
+    src: grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+
+- name: install packages
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ grafana_packages }}"
+  notify: Manage services
+
+- name: Close nginx if running
+  become: yes
+  service:
+    name: nginx
+    state: stopped
+  ignore_errors: yes
+
+- name: Get certificates (port 80 must be open and unused)
+  become: yes
+  shell: docker run --rm -ti -v /etc/letsencrypt:/etc/letsencrypt -v /var/log/letsencrypt:/var/log/letsencrypt -p 80:80 certbot/certbot certonly --standalone --preferred-challenges http-01 -d {{ item }} -m {{ web.email }} --agree-tos --no-eff-email --keep-until-expiring
+  args:
+    creates: /etc/letsencrypt/live/{{ item }}/privkey.pem
+  with_items:
+    - grafana.{{ web.domain }}
+
+- name: Start nginx
+  become: yes
+  service:
+    name: nginx
+    state: restarted
+  ignore_errors: yes

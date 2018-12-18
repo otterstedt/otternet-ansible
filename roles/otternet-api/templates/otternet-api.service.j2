@@ -1,0 +1,23 @@
+[Unit]
+Description=OtterNet API
+Requires=docker.service
+After=docker.service
+
+[Service]
+#ExecStartPre=/bin/sleep 1
+#ExecStartPre=/usr/bin/docker pull centos/otternet.api
+ExecStart=/usr/bin/docker run --rm --name=otternet.api --net=host -v=/mnt/tracking/snaps:/mnt/tracking/snaps centos/otternet.api
+ExecStop=/bin/docker stop otternet.api
+#ExecStopPost=/bin/docker rm -f otternet.api
+ExecReload=/bin/docker restart otternet.api
+User={{ ansible_user }}
+# Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
+#Group={{ systemd_nogroup_name }}
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+#WorkingDirectory=/home/centos/apps/otternet-api
+
+[Install]
+Alias=otternet-api.service
+WantedBy=multi-user.target
+
+

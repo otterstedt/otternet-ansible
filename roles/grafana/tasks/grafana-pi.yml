@@ -1,0 +1,28 @@
+
+
+- name: Set Grafana repo data
+  become: yes
+  copy:
+    content: 'deb https://dl.bintray.com/fg2it/deb {{ raspbian_version }} main'
+    dest: /etc/apt/sources.list.d/grafana.list
+
+- name: Add Grafana repo key
+  become: yes
+  apt_key:
+    url: https://bintray.com/user/downloadSubjectPublicKey?username=bintray
+    state: present
+
+- name: Update apt
+  become: yes
+  apt:
+    update_cache: yes
+
+- name: Install packages
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ grafana_packages }}"
+  notify: Manage services
+
+

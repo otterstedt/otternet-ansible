@@ -1,0 +1,33 @@
+user = "nobody"
+group = "plugdev"
+ignoreControllerConfirmation = "false"
+controller {
+id = 1
+# name = ""
+type = 2
+serial = "A60062s3"
+}
+#device {
+#  id = 100
+#  name = "Example device"
+#  protocol = "arctech"
+#  model = "codeswitch"
+#  parameters {
+#    house = "A"
+#    unit = "1"
+#  }
+#}
+{% for device in tellstick_devices %}
+device {
+  id = {{ device.id }}
+  name = "{{ device.name }}"
+  protocol = "{{ device.protocol }}"
+  model = "{{ device.model }}"
+  parameters {
+    house = "{{ device.house }}"
+    unit = "{{ device.unit }}"
+  }
+}
+{% endfor %}
+
+#https://developer.telldus.com/wiki/TellStick_conf

@@ -1,0 +1,22 @@
+nginx_proxy_cache:
+  short:
+    path: /mnt/web-storage/cache/nginx/short
+    levels: 1:2
+    keys_zone: short_cache:10m
+    max_size: 2g
+    inactive: 60m
+    use_temp_path: off
+  long:
+    path: /mnt/web-storage/cache/nginx/long
+    levels: 1:2
+    keys_zone: long_cache:10m
+    max_size: 2g
+    inactive: 600m
+    use_temp_path: off
+  month:
+    path: /mnt/web-storage/cache/nginx/month
+    levels: 1:2
+    keys_zone: month_cache:10m
+    max_size: 2g
+    inactive: 30d
+    use_temp_path: off

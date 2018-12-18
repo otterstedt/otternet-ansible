@@ -1,0 +1,7 @@
+- name: Include installation tasks
+  include: "install.{{ ansible_os_family | lower }}.yml"
+  tags: [mongodb, 'mongodb:installation']
+
+- name: Include configuration tasks
+  include: "configuration.yml"
+  tags: [mongodb, 'mongodb:configuration']

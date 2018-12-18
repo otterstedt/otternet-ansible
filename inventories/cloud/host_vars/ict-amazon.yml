@@ -1,0 +1,26 @@
+tunnel_ip: "{{ tunnels.cloud.front.ip }}"
+
+snapshots_folder: /mnt/ict-storage/snapshots
+
+daemon_ip: "{{ tunnels.cloud.front.ip }}"
+
+ssh_hosts:
+  - host: raspberry.rge
+    hostname: 127.2.1.10
+    port: 2222
+    user: "{{ ansible.user.rge }}"
+    idfile: keys/id_rsa
+    props:
+      - DynamicForward 127.2.1.10:3128
+  - host: hass.rge
+    hostname: 127.2.1.10
+    port: 2222
+    user: "{{ ansible.user.rge }}"
+    idfile: keys/id_rsa
+    props: []
+  - host: hass.mtl
+    hostname: 127.1.1.10
+    port: 2222
+    user: "{{ ansible.user.pi }}"
+    idfile: keys/id_rsa
+    props: []

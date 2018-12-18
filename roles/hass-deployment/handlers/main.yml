@@ -1,0 +1,5 @@
+- name: Restart Hass
+  become: yes
+  service:
+    name: hass
+    state: restarted

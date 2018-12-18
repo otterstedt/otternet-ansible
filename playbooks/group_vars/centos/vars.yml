@@ -1,0 +1,4 @@
+harperdb_pip_packages:
+  - name: pexpect
+
+atlas_pkg_name: atlas-devel

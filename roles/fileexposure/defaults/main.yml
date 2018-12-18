@@ -1,0 +1,9 @@
+fileexposure_packages:
+  - name: nginx
+    state: latest
+  - name: python2-certbot-nginx
+    state: latest
+
+fileexposure_services:
+  - name: nginx
+    state: restarted

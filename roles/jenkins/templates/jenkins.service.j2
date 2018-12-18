@@ -1,0 +1,21 @@
+[Unit]
+Description=Jenkins Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStartPre=/usr/bin/docker pull jenkins/jenkins:lts
+ExecStart=/usr/bin/docker run --rm --name={{ jenkins_docker.container.name }} -v jenkins_home:/var/jenkins_home -p {{ daemon_ip_sec }}:8080:8080 -p {{ daemon_ip_sec }}:50000:50000 jenkins/jenkins:lts
+ExecStop=/usr/bin/docker stop {{ jenkins_docker.container.name }}
+ExecStopPost=/usr/bin/docker rm {{ jenkins_docker.container.name }}
+ExecReload=/usr/bin/docker restart {{ jenkins_docker.container.name }}
+User={{ ansible_user_id }}
+# Note RHEL/Fedora uses 'nobody', Debian/Ubuntu uses 'nogroup'
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+TimeoutSec=600
+
+[Install]
+Alias=jenkins.service
+WantedBy=multi-user.target
+

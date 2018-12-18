@@ -1,0 +1,4 @@
+[influxdb]
+baseurl = https://repos.influxdata.com/rhel/\$releasever/\$basearch/stable
+gpgkey = https://repos.influxdata.com/influxdb.key
+name = influxdb

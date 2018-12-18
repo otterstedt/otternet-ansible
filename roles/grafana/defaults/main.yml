@@ -1,0 +1,16 @@
+grafana_packages:
+  - name: grafana
+    state: latest
+  - name: nginx
+    state: latest
+
+grafana_services:
+  - name: grafana-server
+    state: restarted
+  - name: nginx
+    state: restarted
+
+grafana_httpd_ports:
+  - port: 3000
+
+grafana_bind_ip: 127.0.0.1

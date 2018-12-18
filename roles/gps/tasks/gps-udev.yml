@@ -1,0 +1,13 @@
+- name: Ensure device alias file exist
+  copy: 
+    content: "" 
+    dest: "{{ gps_udev_device_aliases.path }}" 
+    force: no
+  become: yes
+
+- name: Setup udev rules for device aliases
+  lineinfile:
+    dest: "{{ gps_udev_device_aliases.path }}"
+    line: SUBSYSTEM=="{{ item.device.properties.subsystem }}", ATTRS{idVendor}=="{{ item.device.properties.vendorId }}", ATTRS{idProduct}=="{{ item.device.properties.productId }}"{{ ', ATTRS{serial}=="' + item.device.properties.serial + '"' if item.device.properties.serial is defined else '' }}, SYMLINK+="{{ item.alias }}"
+  with_items: "{{ gps_udev_device_aliases.devices }}"
+  become: yes

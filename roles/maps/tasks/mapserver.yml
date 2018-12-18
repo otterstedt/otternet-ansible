@@ -1,0 +1,20 @@
+- name: Install packages {{ packages }}
+  become: yes
+  package:
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items: "{{ maps_packages }}"
+
+- name: Create Tileserver GL service definition
+  template:
+    src: tileserver-gl.service.j2
+    dest: /usr/lib/systemd/system/tileserver-gl.service
+  become: yes
+
+- name: Reload/Start Tileserver GL service
+  systemd:
+    name: tileserver-gl
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  become: yes

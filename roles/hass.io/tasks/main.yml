@@ -1,0 +1,6 @@
+- include: hass.yml 
+  tags: [hass,'hass:hass']
+
+- include: nginx.yml 
+  tags: [hass,'hass:nginx']
+  when: "'web' in group_names"
