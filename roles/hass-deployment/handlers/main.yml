@@ -1,5 +1,12 @@
 - name: Restart Hass
+  listen: Restart Hass
   become: yes
   service:
     name: hass
     state: restarted
+
+- name: Wait for successful restart
+  listen: Restart Hass
+  wait_for:
+    port: 8123
+    delay: 10
