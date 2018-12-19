@@ -1,6 +1,8 @@
 hass_deployment_packages:
   - name: git
     state: latest
+  - name: ansible
+    state: latest
 
 hass_deployment_repo: https://github.com/otterstedt/home-assistant.git
 
