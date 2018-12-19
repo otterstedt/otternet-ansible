@@ -9,8 +9,20 @@
     src: /tmp/hass-deployment/config/{{ zone_id }}/{{ item }}
     dest: /home/{{ ansible_user }}/homeass/config/
     remote_src: yes
+    backup: yes
   with_items:
     - configuration.yaml
     - automations.yaml
+  notify: Restart Hass
+
+- name: Copy Common Files
+  copy:
+    src: /tmp/hass-deployment/config/common/{{ item.src }}
+    dest: /home/{{ ansible_user }}/homeass/config/{{ item.dest }}
+    remote_src: yes
+    backup: yes
+  with_items:
+    - src: secrets.vault
+      dest: secrets.yaml
   notify: Restart Hass
 
