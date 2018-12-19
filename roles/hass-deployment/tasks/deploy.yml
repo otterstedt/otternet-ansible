@@ -33,7 +33,7 @@
     dest: /home/{{ ansible_user }}/vault-pw
 
 - name: Decrypt Home Assistant secrets file(s)
-  shell: ansible-vault /home/{{ ansible_user }}/homeass/config/{{ item.dest }} --vault-password-file=/home/{{ ansible_user }}/vault-pw
+  shell: ansible-vault decrypt /home/{{ ansible_user }}/homeass/config/{{ item.dest }} --vault-password-file=/home/{{ ansible_user }}/vault-pw
   with_items:
     - src: secrets.vault
       dest: secrets.yaml
