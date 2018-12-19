@@ -34,6 +34,21 @@ ssh_tunnels:
   - type: RemoteForward 
     src: 127.0.2.10:6060 
     dest: localhost:6060
+  - type: LocalForward 
+    src: 127.2.1.10:8001
+    dest: 127.2.1.10:8001
+  - type: LocalForward 
+    src: 127.2.1.10:8002
+    dest: 127.2.1.10:8002
+  - type: LocalForward 
+    src: 127.2.1.10:8003
+    dest: 127.2.1.10:8003
+  - type: LocalForward 
+    src: 127.2.1.10:8008
+    dest: 127.2.1.10:8008
+  - type: LocalForward 
+    src: 127.2.3.10:8007
+    dest: 127.2.3.10:8007
 
 
 snapshots_folder: /home/centos/snapshots
