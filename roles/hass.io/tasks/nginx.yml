@@ -18,6 +18,8 @@
     creates: /etc/letsencrypt/live/{{ item }}/privkey.pem
   with_items:
     - hass.{{ web.domain }}
+    - hass.mtl.{{ web.domain }}
+    - hass.rge.{{ web.domain }}
 
 - name: Allow httpd to connect to non standard ports
   become: yes

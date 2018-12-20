@@ -13,3 +13,5 @@ hass_docker:
 hass_httpd_ports:
   - name: hass
     port: 8123
+  - name: hass.alt
+    port: 8124
