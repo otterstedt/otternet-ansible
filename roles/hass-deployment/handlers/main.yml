@@ -15,7 +15,7 @@
   listen: Reload Hass
   uri:
     url: http://localhost:8123/api/services/group/reload
-    method: GET
+    method: POST
     headers:
       x-ha-access: "{{ hass.api.key }}"
       Content-Type: application/json
@@ -24,7 +24,7 @@
   listen: Reload Hass
   uri:
     url: http://localhost:8123/api/services/automation/reload
-    method: GET
+    method: POST
     headers:
       x-ha-access: "{{ hass.api.key }}"
       Content-Type: application/json
