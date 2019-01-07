@@ -33,7 +33,7 @@
     backup: yes
   with_items:
     - src: secrets.vault
-      dest: secrets.yaml
+      dest: secrets.vault
   notify: Restart Hass
 
 #copy does not decrypt remote copy vault files...
@@ -43,7 +43,7 @@
     dest: /home/{{ ansible_user }}/vault-pw
 
 - name: Decrypt Home Assistant secrets file(s)
-  shell: ansible-vault decrypt /home/{{ ansible_user }}/homeass/config/{{ item.dest }} --vault-password-file=/home/{{ ansible_user }}/vault-pw
+  shell: ansible-vault decrypt /home/{{ ansible_user }}/homeass/config/{{ item.src }} --vault-password-file=/home/{{ ansible_user }}/vault-pw --output=/home/{{ ansible_user }}/homeass/config/{{ item.dest }}
   with_items:
     - src: secrets.vault
       dest: secrets.yaml
