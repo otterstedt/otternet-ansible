@@ -66,6 +66,10 @@ connectedlife:
 #Default way to access the machines (stc, v60, rge etc.)
 access_point: stc
 
+hass:
+    api:
+        key: "{{ vault.hass.api.key }}"
+
 web:
     domain: "{{ vault.web.domain }}"
     email: "{{ vault.web.email }}"

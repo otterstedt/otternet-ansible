@@ -4,7 +4,7 @@
     dest: /tmp/hass-deployment
     version: "{{ hass_deployment_branch }}"
 
-- name: Copy configuration files
+- name: Copy restart configuration files
   copy:
     src: /tmp/hass-deployment/config/{{ zone_id }}/{{ item }}
     dest: /home/{{ ansible_user }}/homeass/config/
@@ -12,8 +12,18 @@
     backup: yes
   with_items:
     - configuration.yaml
-    - automations.yaml
   notify: Restart Hass
+
+- name: Copy reload configuration files 
+  copy:
+    src: /tmp/hass-deployment/config/{{ zone_id }}/{{ item }}
+    dest: /home/{{ ansible_user }}/homeass/config/
+    remote_src: yes
+    backup: yes
+  with_items:
+    - automations.yaml
+    - groups.yaml
+  notify: Reload Hass
 
 - name: Copy Common Files
   copy:

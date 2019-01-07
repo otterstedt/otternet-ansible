@@ -10,3 +10,21 @@
   wait_for:
     port: 8123
     delay: 10
+
+- name: Reload Groups
+  listen: Reload Hass
+  uri:
+    url: http://localhost:8123/api/services/group/reload
+    method: GET
+    headers:
+      x-ha-access: "{{ hass_api_key }}"
+      Content-Type: application/json
+
+- name: Reload Automations
+  listen: Reload Hass
+  uri:
+    url: http://localhost:8123/api/services/automation/reload
+    method: GET
+    headers:
+      x-ha-access: "{{ hass_api_key }}"
+      Content-Type: application/json
