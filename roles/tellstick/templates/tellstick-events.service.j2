@@ -4,7 +4,8 @@ After=network.target
 
 [Service]
 ExecStart=/usr/bin/socat TCP-LISTEN:50801,reuseaddr,fork,bind=10.0.1.29 UNIX-CONNECT:/tmp/TelldusEvents
-Restart=on-failure
+Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

@@ -21,3 +21,6 @@ ict-amazon
 [home-assistant]
 web-amazon
 
+[motion]
+ict-amazon
+

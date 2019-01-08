@@ -15,3 +15,5 @@ hass_httpd_ports:
     port: 8123
   - name: hass.alt
     port: 8124
+
+tellstick_host: False

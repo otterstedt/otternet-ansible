@@ -3,6 +3,8 @@ tunnel_ip: "{{ tunnels.mtl.hass.ip }}"
 raspbian_version: stretch
 system_type: pi
 
+tellstick_host: True
+
 ssh_tunnels:
   - type: RemoteForward 
     src: 127.1.1.10:8123 

@@ -1,7 +1,7 @@
 [Unit]
 Description=Homeassistant Docker
 Requires=docker.service
-After=docker.service influxdb.service
+After=docker.service influxdb.service {{ 'tellstick-events.service tellstick-clients.service' if tellstick_host  else '' }}
 
 [Service]
 #ExecStartPre=/bin/sleep 1

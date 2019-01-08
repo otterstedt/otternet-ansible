@@ -3,6 +3,11 @@ hass.mtl
 hass.rge
 web.cloud
 
+[home-automation]
+hass.mtl
+hass.rge
+
+
 [web]
 web.cloud
 
@@ -17,5 +22,8 @@ hass.rge
 
 [mtl]
 hass.mtl
+
+[motion]
+ict.cloud
 
  

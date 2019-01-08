@@ -44,6 +44,12 @@ ssh_tunnels:
     src: 127.2.1.10:8003
     dest: 127.2.1.10:8003
   - type: LocalForward 
+    src: 127.2.1.10:8005
+    dest: 127.2.1.10:8005
+  - type: LocalForward 
+    src: 127.2.1.10:8006
+    dest: 127.2.1.10:8006
+  - type: LocalForward 
     src: 127.2.1.10:8008
     dest: 127.2.1.10:8008
   - type: LocalForward 
