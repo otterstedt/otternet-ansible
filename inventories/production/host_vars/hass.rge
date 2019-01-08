@@ -1,1 +1,3 @@
 ansible_user: "{{ ansible.user.rge }}"
+
+system_type: pi
