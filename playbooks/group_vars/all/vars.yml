@@ -126,6 +126,7 @@ lsync_local_config:
 
 
 system_type: centos
+raspbian_version: stretch
 
 ansible:
     vault:

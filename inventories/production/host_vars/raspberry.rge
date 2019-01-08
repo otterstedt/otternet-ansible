@@ -1,3 +1,5 @@
 ansible_user: "{{ ansible.user.rge }}"
 
 system_type: pi
+
+raspbian_version: jessie
