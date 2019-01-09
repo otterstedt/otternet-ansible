@@ -1,0 +1,2 @@
+- include: installation.yml 
+  tags: ['liquidprompt','liquidpromt:installation']

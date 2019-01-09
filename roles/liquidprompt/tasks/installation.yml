@@ -1,0 +1,25 @@
+- name: Checkout Liquid Prompt Repo
+  git:
+    repo: "{{ liquidprompt_repo }}"
+    dest: "{{ liquidprompt_dir }}"
+  become: yes
+
+- name: Copy configuration file to user if it does not exist
+  copy:
+    remote_src: yes
+    src: "{{ liquidprompt_dir }}/liquidpromptrc-dist"
+    dest: /home/{{ item.name }}/.liquidpromptrc
+    owner: "{{ item.name }}"
+    force: no
+  with_items: "{{ liquidprompt_users }}"
+
+- name: Activate on login
+  lineinfile:
+    path: /home/{{ item.name }}/.bashrc
+    line: "{{ liquidprompt_source }}"
+    state: "{{ liquidprompt_state }}"
+  with_items: "{{ liquidprompt_users }}"
+
+
+
+    

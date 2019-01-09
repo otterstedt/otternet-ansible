@@ -1,0 +1,14 @@
+liquidprompt_packages:
+  - name: git
+    state: latest
+
+liquidprompt_repo: https://github.com/nojhan/liquidprompt.git
+
+liquidprompt_dir: /usr/local/liquidprompt
+
+liquidprompt_source: "[[ $- = *i* ]] && source {{ liquidprompt_dir }}/liquidprompt"
+
+liquidprompt_users:
+  - name: "{{ ansible_user }}"
+
+liquidprompt_state: present
