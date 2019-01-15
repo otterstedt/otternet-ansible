@@ -1,0 +1,5 @@
+- name: Build Motion Image
+  docker_image:
+    path: /tmp/docker-motion
+    name: docker-motion
+    tag: latest

@@ -1,0 +1,6 @@
+- name: Install Role Packages
+  yum:
+    name: "{{ item.name }}{{ '-' + item.version if item.version else '' }}"
+    state: "{{ item.state }}"
+  become: yes
+  with_items: "{{ motion_packages }}"

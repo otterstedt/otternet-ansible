@@ -1,0 +1,18 @@
+[Unit]
+Description=Motion Docker
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker run --rm --name=motion --net=host -v '/etc/motion/docker:/etc/motion' docker-motion
+ExecStop=/usr/bin/docker stop motion
+ExecStopPost=/usr/bin/docker rm -f motion
+ExecReload=/usr/bin/docker restart motion
+User={{ ansible_user }}
+Group=docker
+Environment=PATH=/bin:/usr/bin:/usr/local/bin:$PATH
+TimeoutSec=60
+
+[Install]
+Alias=motion-docker.service
+WantedBy=multi-user.target

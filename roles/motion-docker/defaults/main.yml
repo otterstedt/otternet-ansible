@@ -1,0 +1,19 @@
+motion_redhat_packages:
+  - name: libjpeg-turbo
+    state: latest
+  - name: libjpeg-turbo-devel
+    state: latest
+  - name: gettext
+    state: latest
+  - name: libmicrohttpd-devel
+    state: latest
+  - name: libzip-devel
+    state: latest
+
+
+    sudo docker run --rm --net=host \
+ -v '/etc/motion:/etc/motion' \
+ -it jwater7/motion
+
+
+    

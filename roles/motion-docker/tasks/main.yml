@@ -1,0 +1,7 @@
+- name: Package Management Tasks
+  include: "pkgs.{{ ansible_os_family | lower }}.yml"
+  tags: [motion, 'motion:installation']
+
+- name: Setup Docker Image
+  include: "motion-docker.yml"
+  tags: [motion, 'motion:docker']
