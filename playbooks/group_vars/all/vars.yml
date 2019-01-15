@@ -80,6 +80,8 @@ tunnels:
             ip: 127.0.100.1
         trunk:
             ip: 127.0.100.2
+        ws:
+            ip: 127.3.10.10
     cloud:
         front:
             ip: 127.0.1.10
@@ -135,6 +137,7 @@ ansible:
         rge: "{{ vault.ansible.user.rge }}"
         pi: "{{ vault.ansible.user.pi }}"
         web: "{{ vault.ansible.user.web }}"
+        slk: "{{ vault.ansible.user.slk }}"
     
 machines:
     web:

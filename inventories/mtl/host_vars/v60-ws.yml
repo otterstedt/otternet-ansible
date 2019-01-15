@@ -1,0 +1,11 @@
+ansible_user: "{{ ansible.user.slk }}"
+tunnel_ip: "{{ tunnels.car.ws.ip }}"
+
+ssh_tunnels: 
+  - type: RemoteForward 
+    src: "{{ tunnels.car.ws.ip }}:2222"
+    dest: localhost:2222
+
+# overrides
+services_alias:
+    ntp: ntp

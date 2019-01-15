@@ -1,6 +1,10 @@
 liquidprompt_packages:
   - name: git
     state: latest
+  - name: acpi
+    state: latest
+  - name: lm-sensors
+    state: latest
 
 liquidprompt_repo: https://github.com/nojhan/liquidprompt.git
 
