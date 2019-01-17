@@ -5,14 +5,11 @@
 Zone ID: 0
 ### Inventory
 
-| Name          | Description | IP | Solution IP |
-| ------------- |:-------------  | -----:|---:|
-| amazon-front  | Cloud Integration Point | - | 127.0.0.1 |
-
-
 | Name          | Local ID | Description | IP | Solution IP |
 | ------------- | --------:|:-------------  | -----:|---:|
-| ict-amazon    | 1 |Cloud Integration Point | - | 127.0.1.10 |
+| amazon-front  | 0 | Old Cloud Integration Point| -| 127.0.0.1  |
+| ict-amazon    | 1 | Cloud Integration Point    | -| 127.0.1.10 |
+| web-amazon    | 2 | Web and storage            | -| 127.0.2.10 |
 
 ## Montreal
 
@@ -34,18 +31,6 @@ Zone ID: 1
 | rasplex       | 9 |Media Client TV            | 10.0.1.   | 127.1.9.10 |
 | ladgunn       | 10|LG TV                      | 10.0.1.   | 127.1.10.10|
 
-
-## V60
-
-Zone ID: 3
-
-### Inventory
-
-| Name          | Local ID | Description | IP | Solution IP |
-| ------------- | --------:|:-------------  | -----:|---:|
-| gps-master    | 1 | GPS & Sensor Tracker  | 192.168.1. | 127.3.1.10 |
-| trunk         | 2 | Playbulb Controller   | 192.168.1. | 127.3.2.10 |
-
 ## Rävgrävle
 
 Zone ID: 2
@@ -65,3 +50,15 @@ Zone ID: 2
 | ipcam-outhouse    | 8 | Outhouse Camera           | 192.168.1.121 | 127.2.8.10   |
 | dcs-5030l         | 9 | Livingroom/door Camera    | 192.168.1.172 | 127.2.9.10   |
 | nest-outdoors     | 10| Nest Camera               | 192.168.1.131 | 127.2.10.10  |
+
+## V60
+
+Zone ID: 3
+
+### Inventory
+
+| Name          | Local ID | Description | IP | Solution IP |
+| ------------- | --------:|:-------------  | -----:|---:|
+| gps-master    | 1 | GPS & Sensor Tracker  | 192.168.1. | 127.3.1.10 |
+| trunk         | 2 | Playbulb Controller   | 192.168.1. | 127.3.2.10 |
+
