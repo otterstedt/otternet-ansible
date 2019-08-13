@@ -42,7 +42,7 @@ Zone ID: 2
 | router            | 0 | Network Router            || 192.168.1.1   | 127.2.0.10   |
 | rpi-rge           | 1 | Zone Master               || 192.168.1.80  | 127.2.1.10   |
 | acer              | 2 | Server Laptop             | 20:6a:8a:89:4f:ab | 192.168.1.    | 127.2.2.10   |
-| rpi-sat           | 3 | Pi Camera                 || 192.168.1.171 | 127.2.3.10   |
+| rpi-sat           | 3 | Pi Camera                 | b8:27:eb:fe:35:06 | 192.168.1.171 | 127.2.3.10   |
 | ipcam-back        | 4 | Backyard Camera           || 192.168.1.111 | 127.2.4.10   |
 | ipcam-front       | 5 | Frontyard camera          || 192.168.1.113 | 127.2.5.10   |
 | ipcam-living      | 6 | Livingroom camera         | 00:a8:f2:00:8e:61 (eth)| 192.168.1.122 | 127.2.6.10   |
