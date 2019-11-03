@@ -1,0 +1,6 @@
+ansible_user: "{{ ansible.user.pi }}"
+
+tellstick_host: False
+
+system_type: pi
+raspbian_version: buster
