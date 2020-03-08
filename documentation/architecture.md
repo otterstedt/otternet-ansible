@@ -37,19 +37,19 @@ Zone ID: 2
 
 ### Inventory
 
-| Name          | Local ID | Description | IP | Solution IP |
-| ------------- |--------:|:-------------  | -----:|---:|
-| router            | 0 | Network Router            | 192.168.1.1   | 127.2.0.10   |
-| rpi-rge           | 1 | Zone Master               | 192.168.1.80  | 127.2.1.10   |
-| acer              | 2 | Server Laptop             | 192.168.1.    | 127.2.2.10   |
-| rpi-sat           | 3 | Pi Camera                 | 192.168.1.171 | 127.2.3.10   |
-| ipcam-back        | 4 | Backyard Camera           | 192.168.1.111 | 127.2.4.10   |
-| ipcam-front       | 5 | Frontyard camera          | 192.168.1.113 | 127.2.5.10   |
-| ipcam-living      | 6 | Livingroom camera         | 192.168.1.122 | 127.2.6.10   |
-| ipcam-attic       | 7 | Attic Camera              | 192.168.1.118 | 127.2.7.10   |
-| ipcam-outhouse    | 8 | Outhouse Camera           | 192.168.1.121 | 127.2.8.10   |
-| dcs-5030l         | 9 | Livingroom/door Camera    | 192.168.1.172 | 127.2.9.10   |
-| nest-outdoors     | 10| Nest Camera               | 192.168.1.131 | 127.2.10.10  |
+| Name          | Local ID | Description | MAC | IP | Solution IP |
+| ------------- |--------:|:------------- |:----- | -----:|---:|
+| router            | 0 | Network Router            || 192.168.1.1   | 127.2.0.10   |
+| rpi-rge           | 1 | Zone Master               || 192.168.1.80  | 127.2.1.10   |
+| acer              | 2 | Server Laptop             | 20:6a:8a:89:4f:ab | 192.168.1.    | 127.2.2.10   |
+| rpi-sat           | 3 | Pi Camera                 | b8:27:eb:fe:35:06 | 192.168.1.171 | 127.2.3.10   |
+| ipcam-back        | 4 | Backyard Camera           | 00:62:6e:63:2c:f2 (eth) e8:ab:fa:71:fa:48 (wifi)| 192.168.1.111 | 127.2.4.10   |
+| ipcam-front       | 5 | Frontyard camera          || 192.168.1.113 | 127.2.5.10   |
+| ipcam-living      | 6 | Livingroom camera         | 00:a8:f2:00:8e:61 (eth)| 192.168.1.122 | 127.2.6.10   |
+| ipcam-attic       | 7 | Attic Camera              | 3c:33:00:83:3c:55 | 192.168.1.118 | 127.2.7.10   |
+| ipcam-outhouse    | 8 | Outhouse Camera           | 3c:33:00:83:3c:7d | 192.168.1.121 | 127.2.8.10   |
+| dcs-5030l         | 9 | Livingroom/door Camera    | b0:c5:54:44:3e:75 | 192.168.1.172 | 127.2.9.10   |
+| nest-outdoors     | 10| Nest Camera               | 18:b4:30:d7:6d:44 | 192.168.1.131 | 127.2.10.10  |
 
 ## V60
 
