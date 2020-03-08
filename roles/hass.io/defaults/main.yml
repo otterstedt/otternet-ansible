@@ -1,4 +1,5 @@
-hass_packages: []
+hass_packages: 
+  - bluetooth
 
 hass_services:
   - name: hass

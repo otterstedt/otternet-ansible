@@ -96,6 +96,10 @@ tunnels:
             ip: 127.2.1.10
         sat:
             ip: 127.2.3.10
+    sln:
+        hass:
+            ip: 127.4.1.10
+
 
 maps_ip: "{{ tunnels.cloud.front.ip }}"
 

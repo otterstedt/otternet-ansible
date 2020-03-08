@@ -1,8 +1,10 @@
 [homeautomation]
 hass-pi
+hass.sln
 
 [pi]
 hass-pi
+hass.sln
 
 [workstation]
 v60-ws

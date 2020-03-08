@@ -5,6 +5,12 @@ snapshots_folder: /mnt/ict-storage/snapshots
 daemon_ip: "{{ tunnels.cloud.front.ip }}"
 
 ssh_hosts:
+  - host: hass.sln
+    hostname: 127.4.1.10
+    port: 2222
+    user: "{{ ansible.user.pi }}"
+    idfile: keys/id_rsa
+    props: []
   - host: raspberry.rge
     hostname: 127.2.1.10
     port: 2222

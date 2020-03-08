@@ -12,6 +12,13 @@
     state: directory
     mode: 0755
 
+- name: Ensure systemd service folder exists
+  become: yes
+  file:
+    path: /usr/lib/systemd/system/
+    state: directory
+    mode: 0740
+
 - name: Create hass.io service file
   become: yes
   template:
