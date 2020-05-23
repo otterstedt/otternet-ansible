@@ -1,7 +1,7 @@
-ansible_user: "{{ ansible.user.pi }}"
+#ansible_user: "{{ ansible.user.pi }}"
 
-system_type: pi
+#system_type: pi
 
-raspbian_version: stretch
-tellstick_host: False
+#raspbian_version: stretch
+#tellstick_host: False
 
